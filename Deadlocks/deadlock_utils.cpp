@@ -1,5 +1,4 @@
 #include "deadlock_utils.h"
-#include<iostream>
 
 void read_vec(std::vector<int>& v, int n)
 {
@@ -33,7 +32,7 @@ void add_vecs(std::vector<int>& v1, std::vector<int>& v2)
         v1[i] += v2[i];
 }
 
-bool iszero(std::vector<int>& v)       //Return true if av[i] == 0 for all i else false
+bool iszero(std::vector<int>& v)
 {
     for(int i=0; i<v.size(); ++i)
     {
@@ -43,7 +42,7 @@ bool iszero(std::vector<int>& v)       //Return true if av[i] == 0 for all i els
     return true;
 }
 
-int compare_vec(std::vector<int>& v1, std::vector<int>& v2)  //Return true if v1<= v2 else false
+bool compare_vec(std::vector<int>& v1, std::vector<int>& v2)
 {
     int n = v1.size();
     //int flag = 0;
@@ -55,3 +54,21 @@ int compare_vec(std::vector<int>& v1, std::vector<int>& v2)  //Return true if v1
     return true;
 }
 
+std::vector<int> find_index(std::vector<bool>& finish, std::vector<std::vector<int>>& vec, std::vector<int>& work)
+{
+    std::set<int> s1, s2;
+    for(int i=0; i<vec.size(); ++i)
+    {
+        if(compare_vec(vec[i], work))
+            s1.insert(i);
+    }
+    for(int i=0; i<finish.size(); ++i)
+    {
+        if(finish[i] == false)
+           s2.insert(i);
+    }
+    std::vector<int> result(work.size());
+    std::vector<int>::iterator it = std::set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), result.begin());
+    result.resize(it - result.begin());
+    return result;
+}

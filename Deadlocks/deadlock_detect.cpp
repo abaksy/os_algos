@@ -1,11 +1,11 @@
-#include "deadlock_utils.h"
-#include<iostream>
-#include<vector>
-#include<algorithm>
-#include<set>
+/*
+Implementation of the Deadlock Detection Algorithm
+for multiple resource classes, each having more than one instance
 
-//Returns an index i such that finish[i]==false and request[i] <= work
-std::vector<int> find_index(std::vector<bool>& finish, std::vector<std::vector<int>>& request, std::vector<int>& work);
+Algorithm is as presented by the textbook 
+Operating Systems Concepts (9e.), by Silberschatz, Galvin and Gagne 
+*/
+#include "deadlock_utils.h"
 
 //Detect deadlock using the finish vector. No deadlocks if finish[i] is true for all i
 void detect_deadlock(std::vector<bool>& finish);
@@ -15,9 +15,9 @@ int main()
 {
     int m = 3;  //Number of resource classes
     int n = 5;  //Number of processes
-    std::vector<int> available;
-    std::vector<std::vector<int>> allocation;
-    std::vector<std::vector<int>> request;
+    std::vector<int> available;                 //Number of instances available per resource class (size: n)
+    std::vector<std::vector<int>> allocation;   //Matrix of currently allocated instances per process per resource class (size: n x m)
+    std::vector<std::vector<int>> request;      //Matrix of requested instances per process per resource class (size: n x m)
     int temp;
     read_vec(available, m);
     read_2D(allocation, n, m);
@@ -45,25 +45,6 @@ int main()
     }
     detect_deadlock(finish);
     return 0;
-}
-
-std::vector<int> find_index(std::vector<bool>& finish, std::vector<std::vector<int>>& request, std::vector<int>& work)
-{
-    std::set<int> s1, s2;
-    for(int i=0; i<request.size(); ++i)
-    {
-        if(compare_vec(request[i], work))
-            s1.insert(i);
-    }
-    for(int i=0; i<finish.size(); ++i)
-    {
-        if(finish[i] == false)
-           s2.insert(i);
-    }
-    std::vector<int> result(5);
-    std::vector<int>::iterator it = std::set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), result.begin());
-    result.resize(it - result.begin());
-    return result;
 }
 
 void detect_deadlock(std::vector<bool>& finish)
