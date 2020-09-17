@@ -1,29 +1,8 @@
+#include "deadlock_utils.h"
 #include<iostream>
 #include<vector>
 #include<algorithm>
 #include<set>
-
-bool iszero(std::vector<int> av)       //Return true if av[i] == 0 for all i else false
-{
-    for(int i=0; i<av.size(); ++i)
-    {
-        if(av[i] != 0)
-            return false;
-    }
-    return true;
-}
-
-int compare_vec(std::vector<int> v1, std::vector<int> v2)  //Return true if v1<= v2 else false
-{
-    int n = v1.size();
-    //int flag = 0;
-    for(int i=0; i<n; ++i)
-    {
-        if(v1[i] > v2[i])
-            return false;
-    }
-    return true;
-}
 
 std::vector<int> find_index(std::vector<bool>& finish, std::vector<std::vector<int>>& request, std::vector<int>& work)
 {
@@ -42,12 +21,6 @@ std::vector<int> find_index(std::vector<bool>& finish, std::vector<std::vector<i
     std::vector<int>::iterator it = std::set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), result.begin());
     result.resize(it - result.begin());
     return result;
-}
-
-void add_vecs(std::vector<int>& v1, std::vector<int>& v2)
-{
-    for(int i=0; i<v1.size(); ++i)
-        v1[i] += v2[i];
 }
 
 void detect_deadlock(std::vector<bool>& finish)
@@ -73,33 +46,9 @@ int main()
     std::vector<std::vector<int>> allocation;
     std::vector<std::vector<int>> request;
     int temp;
-    for(int i=0; i<m; ++i)
-    {
-        std::cin>>temp;
-        available.push_back(temp);
-    }
-    std::vector<int> temp1;
-    for(int i=0; i<n; ++i)
-    {
-        for(int j=0; j<m; ++j)
-        {
-            std::cin>>temp;
-            temp1.push_back(temp);
-        }
-        allocation.push_back(temp1);
-        temp1.clear();
-    }
-    std::vector<int> temp2;
-    for(int i=0; i<n; ++i)
-    {
-        for(int j=0; j<m; ++j)
-        {
-            std::cin>>temp;
-            temp2.push_back(temp);
-        }
-        request.push_back(temp2);
-        temp2.clear();
-    }
+    read_vec(available, m);
+    read_2D(allocation, n, m);
+    read_2D(request, n, m);
     std::vector<int> work = available;
     std::vector<bool> finish;
     for(int i=0; i<n; ++i)
