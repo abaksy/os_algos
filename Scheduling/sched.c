@@ -45,7 +45,7 @@ process_t* build_process_q(int n, int type)
     for(int i=0; i<n; ++i)
     {
         ps[i].pid = i;
-        printf("Enter burst time of process %d: ", i+1);
+        printf("Enter burst time of process %d: ", i);
         scanf("%d", &ps[i].burst_time);
         ps[i].bt = ps[i].burst_time;
         ps[i].wait_time = 0;
@@ -54,7 +54,7 @@ process_t* build_process_q(int n, int type)
         ps[i].pty = 0;
         if(type==2)
         {
-            printf("Enter priority of process %d: ", i+1);
+            printf("Enter priority of process %d: ", i);
             scanf("%d", &ps[i].pty);
         }
         printf("\n");
@@ -67,9 +67,9 @@ int main()
 {
     int opt, q, n;
     printf("1)Shortest Job First Scheduling\n2)Priority Scheduling\n3)Round Robin Scheduling");
-    printf("\nEnter the algorithm to demonstrate: ");
+    printf("\n\nEnter the algorithm to demonstrate: ");
     scanf("%d", &opt);
-    printf("Enter number of processes: ");
+    printf("\nEnter number of processes: ");
     scanf("%d", &n); 
     process_t* ps = build_process_q(n, opt);
     switch(opt)
