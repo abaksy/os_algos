@@ -1,5 +1,4 @@
 #include"sched.h"
-#include<stdio.h>
 
 void print_result(process_t* ps, int n, int type)
 {
