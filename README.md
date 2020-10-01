@@ -1,4 +1,4 @@
-# Operating Systems
+# Operating Systems Algorithms
 
 C/C++ implementation of some algorithms used in Operating Systems. This repository covers algorithms that were taught in the 
 Operating Systems course (UE18CS303) at PES University, Bengaluru.
