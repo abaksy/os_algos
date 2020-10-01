@@ -1,4 +1,5 @@
 #include "sched.h"
+
 void priority(process_t* ps, int n)
 {
     process_t temp;

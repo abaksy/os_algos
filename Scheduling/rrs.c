@@ -1,5 +1,3 @@
-#include<stdio.h>
-#include<stdlib.h>
 #include"sched.h"
 
 int min(int a, int b)

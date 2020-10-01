@@ -1,5 +1,3 @@
-#include<stdio.h>
-#include<stdlib.h>
 #include"sched.h"
 
 void sjf(process_t* ps, int n)
