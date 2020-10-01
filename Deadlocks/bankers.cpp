@@ -2,6 +2,8 @@
 
 bool is_safe_state(std::vector<bool>& , std::vector<std::vector<int>>&, std::vector<int>&, std::vector<std::vector<int>>&);
 
+bool safe_request_grant(std::vector<std::vector<int>>&, std::vector<std::vector<int>>&, std::vector<int>&, std::vector<int>&);
+
 int main()
 {
     int m = 3;  //Number of resource classes
@@ -22,7 +24,8 @@ int main()
     return 0;
 }
 
-bool is_safe_state(std::vector<bool>& finish, std::vector<std::vector<int>>& need, std::vector<int>& work, std::vector<std::vector<int>>& allocation)
+bool is_safe_state(std::vector<bool>& finish, std::vector<std::vector<int>>& need, 
+    std::vector<int>& work, std::vector<std::vector<int>>& allocation)
 {
     int ctr = 1;
     while(true)
@@ -44,5 +47,11 @@ bool is_safe_state(std::vector<bool>& finish, std::vector<std::vector<int>>& nee
             return false;
         }
     }
+    return true;
+}
+
+bool safe_request_grant(std::vector<std::vector<int>>& allocation, std::vector<std::vector<int>>& need, 
+    std::vector<int>& available, std::vector<int>& request)
+{
     return true;
 }

@@ -15,6 +15,9 @@ void read_2D(std::vector<std::vector<int>>& v, int r, int c);
 //Add vectors in place (v1 = v1+v2)
 void add_vecs(std::vector<int>& v1, std::vector<int>& v2); 
 
+//Subtract vectors in place (v1 = v1-v2)
+void subt_vecs(std::vector<int>& v1, std::vector<int>& v2); 
+
 //Return true if v[i]==0 for all i, else return false
 bool iszero(std::vector<int>& v);
 

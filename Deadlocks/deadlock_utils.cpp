@@ -32,6 +32,12 @@ void add_vecs(std::vector<int>& v1, std::vector<int>& v2)
         v1[i] += v2[i];
 }
 
+void subt_vecs(std::vector<int>& v1, std::vector<int>& v2)
+{
+    for(int i=0; i<v1.size(); ++i)
+        v1[i] -= v2[i];
+}
+
 bool iszero(std::vector<int>& v)
 {
     for(int i=0; i<v.size(); ++i)
